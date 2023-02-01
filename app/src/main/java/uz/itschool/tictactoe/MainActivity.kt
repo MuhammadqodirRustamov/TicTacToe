@@ -8,6 +8,7 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 
@@ -24,20 +25,28 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     private lateinit var im8 : ImageView
     private lateinit var playerImage : ImageView
 
+    private lateinit var winnerText : TextView
+
     private lateinit var reset : Button
 
     private var x = R.drawable.x
     private var o = R.drawable.o
 
     private var currentPlayer = 1
+    private var x_score = 0
+    private var o_score = 0
+
+    private lateinit var scoreX : TextView
+    private lateinit var scoreO : TextView
 
     private lateinit var animation : Animation
+    private var matrix = Array(3){Array(3){-1} }
+
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
 
         im0 = findViewById(R.id.im0)
         im1 = findViewById(R.id.im1)
@@ -51,6 +60,9 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
         reset = findViewById(R.id.reset_button)
         playerImage = findViewById(R.id.player_image)
+        winnerText = findViewById(R.id.winnerText)
+        scoreX = findViewById(R.id.scoreX)
+        scoreO = findViewById(R.id.scoreO)
 
         reset.setOnClickListener { reset() }
 
@@ -69,17 +81,12 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     }
 
     private fun reset(){
-//        animation = AnimationUtils.loadAnimation(applicationContext, R.anim.xo_animation_reverse)
-//
-//        im0.startAnimation(animation)
-//        im1.startAnimation(animation)
-//        im2.startAnimation(animation)
-//        im3.startAnimation(animation)
-//        im4.startAnimation(animation)
-//        im5.startAnimation(animation)
-//        im6.startAnimation(animation)
-//        im7.startAnimation(animation)
-//        im8.startAnimation(animation)
+        winnerText.text = ""
+        for (i in matrix){
+            i[0] = -1
+            i[1] = -1
+            i[2] = -1
+        }
 
         currentPlayer = 1
         setPlayer()
@@ -95,21 +102,20 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         im8.setImageDrawable(null)
 
 
-        im0.isEnabled = true
-        im1.isEnabled = true
-        im2.isEnabled = true
-        im3.isEnabled = true
-        im4.isEnabled = true
-        im5.isEnabled = true
-        im6.isEnabled = true
-        im7.isEnabled = true
-        im8.isEnabled = true
+        enableImages()
 
     }
 
     override fun onClick(v: View?) {
+        winnerText.text = ""
+
         val view = v as ImageView
         if (!view.isEnabled) return
+
+        val xCor = view.tag.toString().toInt()%3
+        val yCor = view.tag.toString().toInt()/3
+        matrix[yCor][xCor] = currentPlayer
+
         view.isEnabled = false
 
 
@@ -120,10 +126,9 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         animation = AnimationUtils.loadAnimation(applicationContext, R.anim.xo_animation)
         view.startAnimation(animation)
 
-
+        val check = checkWinner()
         currentPlayer = if (currentPlayer == 1) 0 else 1
-        setPlayer()
-
+        if (!check)setPlayer()
     }
 
     private fun setPlayer(){
@@ -134,5 +139,84 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
         animation = AnimationUtils.loadAnimation(applicationContext, R.anim.player_anim)
         playerImage.startAnimation(animation)
+    }
+
+    private fun checkWinner(): Boolean {
+        val c = currentPlayer
+        for (i in matrix){
+            if (i[0] == c && i[1] == c && i[2] == c){
+                playerHasWon(c)
+                return true
+            }
+        }
+        for (i in 0..2){
+            if (matrix[0][i] == c && matrix[1][i] == c && matrix[2][i] == c){
+                playerHasWon(c)
+                return true
+            }
+        }
+        if (matrix[0][0] == c && matrix[1][1] == c && matrix[2][2] == c ){
+            playerHasWon(c)
+            return true
+        }
+        if (matrix[0][2] == c && matrix[1][1] == c && matrix[2][0] == c ){
+            playerHasWon(c)
+            return true
+        }
+        var count = 0
+        for (i in matrix){
+            for (j in i){
+                if (j == -1){
+                    count++
+                }
+            }
+        }
+        if (count == 0) {
+            playerHasWon(-1)
+            return true
+        }
+        return false
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun playerHasWon(player:Int){
+        if (player == -1){
+            winnerText.text = "DRAW"
+            return
+        }
+        if (player == 0){
+            o_score++
+            scoreO.text = o_score.toString()
+        }else{
+            x_score++
+            scoreX.text = x_score.toString()
+        }
+        var t = "Winner is "
+        t += if (player == 1) "X" else "O"
+        winnerText.text = t
+        disableImages()
+
+    }
+    private fun enableImages(){
+        im0.isEnabled = true
+        im1.isEnabled = true
+        im2.isEnabled = true
+        im3.isEnabled = true
+        im4.isEnabled = true
+        im5.isEnabled = true
+        im6.isEnabled = true
+        im7.isEnabled = true
+        im8.isEnabled = true
+    }
+    private fun disableImages(){
+        im0.isEnabled = false
+        im1.isEnabled = false
+        im2.isEnabled = false
+        im3.isEnabled = false
+        im4.isEnabled = false
+        im5.isEnabled = false
+        im6.isEnabled = false
+        im7.isEnabled = false
+        im8.isEnabled = false
     }
 }

@@ -2,4 +2,5 @@
     <string name="app_name">TicTacToe</string>
     <string name="reset">Reset</string>
     <string name="player">Player</string>
+    <string name="_0">0</string>
 </resources>
