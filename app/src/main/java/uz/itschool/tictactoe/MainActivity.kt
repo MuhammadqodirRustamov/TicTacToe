@@ -60,7 +60,6 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         im8.setOnClickListener(this)
 
 
-        animation.
 
     }
 
