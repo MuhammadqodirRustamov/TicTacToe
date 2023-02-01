@@ -1,14 +1,13 @@
 package uz.itschool.tictactoe
 
 import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.View.OnClickListener
+import android.view.animation.Animation
 import android.widget.Button
 import android.widget.ImageView
-import androidx.core.view.isVisible
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity(), OnClickListener {
 
@@ -28,6 +27,8 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     private var o = R.drawable.o
 
     private var currentPlayer = 1
+
+    private lateinit var animation : Animation
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,31 +60,42 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         im8.setOnClickListener(this)
 
 
+        animation.
+
     }
 
     private fun reset(){
-        Log.d("TAG", "reset: ")
-        im0.visibility = View.INVISIBLE
-        im1.visibility = View.INVISIBLE
-        im2.visibility = View.INVISIBLE
-        im3.visibility = View.INVISIBLE
-        im4.visibility = View.INVISIBLE
-        im5.visibility = View.INVISIBLE
-        im6.visibility = View.INVISIBLE
-        im7.visibility = View.INVISIBLE
-        im8.visibility = View.INVISIBLE
+        im0.setImageDrawable(null)
+        im1.setImageDrawable(null)
+        im2.setImageDrawable(null)
+        im3.setImageDrawable(null)
+        im4.setImageDrawable(null)
+        im5.setImageDrawable(null)
+        im6.setImageDrawable(null)
+        im7.setImageDrawable(null)
+        im8.setImageDrawable(null)
+
+        im0.isEnabled = true
+        im1.isEnabled = true
+        im2.isEnabled = true
+        im3.isEnabled = true
+        im4.isEnabled = true
+        im5.isEnabled = true
+        im6.isEnabled = true
+        im7.isEnabled = true
+        im8.isEnabled = true
+
     }
 
     override fun onClick(v: View?) {
-        Log.d("TAG", "onClick: ")
         val view = v as ImageView
-        if (view.isVisible) return
+        if (!view.isEnabled) return
 
         var image = x
         if (currentPlayer == 0) image = o
         view.setImageResource(image)
 
-        view.visibility = View.VISIBLE
+        view.isEnabled = false
         currentPlayer = if (currentPlayer == 1) 0 else 1
 
     }
