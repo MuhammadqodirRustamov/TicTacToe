@@ -6,37 +6,19 @@ import android.view.View
 import android.view.View.OnClickListener
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.Button
 import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity(), OnClickListener {
 
-    private lateinit var im0 : ImageView
-    private lateinit var im1 : ImageView
-    private lateinit var im2 : ImageView
-    private lateinit var im3 : ImageView
-    private lateinit var im4 : ImageView
-    private lateinit var im5 : ImageView
-    private lateinit var im6 : ImageView
-    private lateinit var im7 : ImageView
-    private lateinit var im8 : ImageView
-    private lateinit var redline : ImageView
-    private lateinit var playerImage : ImageView
-    private lateinit var winnerText : TextView
-    private lateinit var reset : Button
-    private lateinit var scoreX : TextView
-    private lateinit var scoreO : TextView
-
     private var x = R.drawable.x
     private var o = R.drawable.o
+
     private var currentPlayer = 1
-    private var x_score = 0
-    private var o_score = 0
+    private var xScore = 0
+    private var oScore = 0
 
 
     private lateinit var animation : Animation
@@ -48,25 +30,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        redline = findViewById(R.id.redline)
-
-        im0 = findViewById(R.id.im0)
-        im1 = findViewById(R.id.im1)
-        im2 = findViewById(R.id.im2)
-        im3 = findViewById(R.id.im3)
-        im4 = findViewById(R.id.im4)
-        im5 = findViewById(R.id.im5)
-        im6 = findViewById(R.id.im6)
-        im7 = findViewById(R.id.im7)
-        im8 = findViewById(R.id.im8)
-
-        reset = findViewById(R.id.reset_button)
-        playerImage = findViewById(R.id.player_image)
-        winnerText = findViewById(R.id.winnerText)
-        scoreX = findViewById(R.id.scoreX)
-        scoreO = findViewById(R.id.scoreO)
-
-        reset.setOnClickListener { reset() }
+        replay_button.setOnClickListener { reset() }
 
         im0.setOnClickListener(this)
         im1.setOnClickListener(this)
@@ -80,6 +44,10 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     }
 
     private fun reset(){
+        animation = AnimationUtils.loadAnimation(applicationContext, R.anim.disapperanim)
+        scoreScreen.startAnimation(animation)
+        gamescreen.visibility = View.VISIBLE
+        scoreScreen.visibility = View.GONE
         winnerText.text = ""
         for (i in matrix){
             i[0] = -1
@@ -190,12 +158,16 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             winnerText.text = "DRAW"
             return
         }
+
+        animation = AnimationUtils.loadAnimation(applicationContext, R.anim.bounce)
         if (player == 0){
-            o_score++
-            scoreO.text = o_score.toString()
+            oScore++
+            scoreO.text = oScore.toString()
+            scoreO.startAnimation(animation)
         }else{
-            x_score++
-            scoreX.text = x_score.toString()
+            xScore++
+            scoreX.text = xScore.toString()
+            scoreX.startAnimation(animation)
         }
         var t = "Winner is "
         t += if (player == 1) "X" else "O"
@@ -228,6 +200,11 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     private fun showScoreScreen(){
         gamescreen.visibility = View.GONE
         scoreScreen.visibility = View.VISIBLE
+        animation = AnimationUtils.loadAnimation(applicationContext, R.anim.apperanim)
+        scoreScreen.startAnimation(animation)
+        toMainMenu.startAnimation(animation)
+        winnerText.startAnimation(animation)
+
 
     }
 
@@ -268,17 +245,13 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         redline.setImageResource(image)
         redline.startAnimation(animation)
         animation.setAnimationListener(object : Animation.AnimationListener{
-            override fun onAnimationStart(animation: Animation?) {
-
-            }
+            override fun onAnimationStart(animation: Animation?) {}
 
             override fun onAnimationEnd(animation: Animation?) {
-
+                showScoreScreen()
             }
 
-            override fun onAnimationRepeat(animation: Animation?) {
-
-            }
+            override fun onAnimationRepeat(animation: Animation?) {}
 
         })
     }

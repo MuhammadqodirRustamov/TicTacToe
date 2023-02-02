@@ -4,4 +4,7 @@
     <string name="player">Player</string>
     <string name="_0">0</string>
     <string name="winner">Winner</string>
+    <string name="replay">replay</string>
+    <string name="main_menu">main menu</string>
+    <string name="home">home</string>
 </resources>

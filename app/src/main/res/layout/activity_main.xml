@@ -42,7 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <ImageView
-                android:id="@+id/player_image"
+                android:id="@+id/playerImage"
                 android:layout_marginStart="20dp"
                 android:src="@drawable/x_shadowless"
                 android:layout_width="60dp"
@@ -207,7 +207,7 @@
                 tools:ignore="ContentDescription" />
         </RelativeLayout>
         <androidx.appcompat.widget.LinearLayoutCompat
-            android:visibility="gone"
+            android:visibility="visible"
             android:id="@+id/scoreScreen"
             android:gravity="center"
             android:orientation="vertical"
@@ -225,12 +225,31 @@
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/reset_button" />
-            <Button
-                android:id="@+id/reset_button"
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/replay_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:background="@drawable/rounded_shape"
+                app:backgroundTint="#00BD12"
+                android:padding="10dp"
                 android:layout_marginTop="16dp"
-                android:text="@string/reset"
+                android:text="@string/replay"
+                app:icon="@drawable/replayicon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/toMainMenu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:background="@drawable/rounded_shape"
+                app:backgroundTint="#7336E3"
+                android:padding="10dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/home"
+                app:icon="@drawable/homeicon"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cardView" />
