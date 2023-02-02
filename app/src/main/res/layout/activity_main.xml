@@ -17,15 +17,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ContentDescription" />
 
-    <ImageView
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_marginEnd="-70dp"
-        android:layout_marginBottom="-70dp"
-        android:src="@drawable/xx"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:ignore="ContentDescription" />
+
 
     <androidx.cardview.widget.CardView
         app:cardBackgroundColor="#CCFFFFFF"
@@ -70,190 +62,215 @@
         app:layout_constraintTop_toBottomOf="@+id/cardView2">
 
 
-        <LinearLayout
+
+        <RelativeLayout
+            android:visibility="visible"
+            android:id="@+id/gamescreen"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:divider="?android:dividerHorizontal"
-            android:orientation="horizontal"
-            android:showDividers="middle"
-            android:baselineAligned="false">
-
+            android:layout_height="match_parent">
             <LinearLayout
-                android:layout_width="0dp"
+                android:visibility="visible"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:divider="?android:dividerHorizontal"
-                android:orientation="vertical"
-                android:showDividers="middle">
+                android:orientation="horizontal"
+                android:showDividers="middle"
+                android:baselineAligned="false">
 
-                <ImageView
-                    android:id="@+id/im0"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_marginTop="20dp"
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:soundEffectsEnabled="true"
-                    android:tag="0"
-                    tools:ignore="ContentDescription,NestedWeights" />
+                    android:divider="?android:dividerHorizontal"
+                    android:orientation="vertical"
+                    android:showDividers="middle">
 
-                <ImageView
-                    android:id="@+id/im3"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_marginTop="20dp"
+                    <ImageView
+                        android:id="@+id/im0"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="1"
+                        android:soundEffectsEnabled="true"
+                        android:tag="0"
+                        tools:ignore="ContentDescription,NestedWeights" />
+
+                    <ImageView
+                        android:id="@+id/im3"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="1"
+                        android:soundEffectsEnabled="true"
+                        android:tag="3"
+                        tools:ignore="ContentDescription,NestedWeights" />
+
+
+                    <ImageView
+                        android:id="@+id/im6"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="1"
+                        android:soundEffectsEnabled="true"
+                        android:tag="6"
+                        tools:ignore="ContentDescription,NestedWeights" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:soundEffectsEnabled="true"
-                    android:tag="3"
-                    tools:ignore="ContentDescription,NestedWeights" />
+                    android:divider="?android:dividerHorizontal"
+                    android:orientation="vertical"
+                    android:showDividers="middle">
 
+                    <ImageView
+                        android:id="@+id/im1"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="1"
+                        android:soundEffectsEnabled="true"
+                        android:tag="1"
+                        tools:ignore="ContentDescription,NestedWeights" />
 
-                <ImageView
-                    android:id="@+id/im6"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_marginTop="20dp"
+                    <ImageView
+                        android:id="@+id/im4"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="1"
+                        android:soundEffectsEnabled="true"
+                        android:tag="4"
+                        tools:ignore="ContentDescription,NestedWeights" />
+
+                    <ImageView
+                        android:id="@+id/im7"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="1"
+                        android:soundEffectsEnabled="true"
+                        android:tag="7"
+                        tools:ignore="ContentDescription,NestedWeights" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:soundEffectsEnabled="true"
-                    android:tag="6"
-                    tools:ignore="ContentDescription,NestedWeights" />
+                    android:divider="?android:dividerHorizontal"
+                    android:orientation="vertical"
+                    android:showDividers="middle">
+
+                    <ImageView
+                        android:id="@+id/im2"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="1"
+                        android:soundEffectsEnabled="true"
+                        android:tag="2"
+                        tools:ignore="ContentDescription,NestedWeights" />
+
+                    <ImageView
+                        android:id="@+id/im5"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="1"
+                        android:soundEffectsEnabled="true"
+                        android:tag="5"
+                        tools:ignore="ContentDescription,NestedWeights" />
+
+                    <ImageView
+                        android:id="@+id/im8"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="1"
+                        android:soundEffectsEnabled="true"
+                        android:tag="8"
+                        tools:ignore="ContentDescription,NestedWeights" />
+
+                </LinearLayout>
+
 
             </LinearLayout>
+            <ImageView
+                android:id="@+id/redline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:ignore="ContentDescription" />
+        </RelativeLayout>
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:visibility="gone"
+            android:id="@+id/scoreScreen"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/winnerText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/winner"
+                android:textColor="#134085"
+                android:textSize="40sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/reset_button" />
+            <Button
+                android:id="@+id/reset_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/reset"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:divider="?android:dividerHorizontal"
-                android:orientation="vertical"
-                android:showDividers="middle">
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
-                <ImageView
-                    android:id="@+id/im1"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="1"
-                    android:soundEffectsEnabled="true"
-                    android:tag="1"
-                    tools:ignore="ContentDescription,NestedWeights" />
-
-                <ImageView
-                    android:id="@+id/im4"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="1"
-                    android:soundEffectsEnabled="true"
-                    android:tag="4"
-                    tools:ignore="ContentDescription,NestedWeights" />
-
-                <ImageView
-                    android:id="@+id/im7"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="1"
-                    android:soundEffectsEnabled="true"
-                    android:tag="7"
-                    tools:ignore="ContentDescription,NestedWeights" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:divider="?android:dividerHorizontal"
-                android:orientation="vertical"
-                android:showDividers="middle">
-
-                <ImageView
-                    android:id="@+id/im2"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="1"
-                    android:soundEffectsEnabled="true"
-                    android:tag="2"
-                    tools:ignore="ContentDescription,NestedWeights" />
-
-                <ImageView
-                    android:id="@+id/im5"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="1"
-                    android:soundEffectsEnabled="true"
-                    android:tag="5"
-                    tools:ignore="ContentDescription,NestedWeights" />
-
-                <ImageView
-                    android:id="@+id/im8"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="1"
-                    android:soundEffectsEnabled="true"
-                    android:tag="8"
-                    tools:ignore="ContentDescription,NestedWeights" />
-
-            </LinearLayout>
-
-
-        </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 
-    <Button
-        android:id="@+id/reset_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/reset"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView" />
-
-    <TextView
-        android:id="@+id/winnerText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text=""
-        android:textColor="@color/white"
-        android:textSize="40sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reset_button" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/winnerText">
+        app:layout_constraintTop_toBottomOf="@+id/cardView">
 
         <TextView
             android:id="@+id/scoreX"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="30dp"
             android:text="@string/_0"
-            android:textSize="60sp"
             android:textColor="@color/white"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:textSize="60sp" />
+
         <View
             android:layout_width="5dp"
             android:layout_height="match_parent"
             android:background="@color/white" />
+
         <TextView
             android:id="@+id/scoreO"
-            android:layout_marginStart="30dp"
-            android:textSize="60sp"
-            android:textColor="@color/white"
-            android:text="@string/_0"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:text="@string/_0"
+            android:textColor="@color/white"
+            android:textSize="60sp" />
 
     </LinearLayout>
 
