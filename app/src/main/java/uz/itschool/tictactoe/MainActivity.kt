@@ -156,6 +156,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     private fun playerHasWon(player:Int){
         if (player == -1){
             winnerText.text = "DRAW"
+            showScoreScreen()
             return
         }
 
@@ -200,10 +201,8 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     private fun showScoreScreen(){
         gamescreen.visibility = View.GONE
         scoreScreen.visibility = View.VISIBLE
-        animation = AnimationUtils.loadAnimation(applicationContext, R.anim.apperanim)
+        animation = AnimationUtils.loadAnimation(applicationContext, R.anim.apperwithbounceanim)
         scoreScreen.startAnimation(animation)
-        toMainMenu.startAnimation(animation)
-        winnerText.startAnimation(animation)
 
 
     }

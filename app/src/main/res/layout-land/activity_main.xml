@@ -18,35 +18,36 @@
         tools:ignore="ContentDescription" />
 
 
-
     <androidx.cardview.widget.CardView
-        app:cardBackgroundColor="#CCFFFFFF"
         android:id="@+id/cardView2"
         android:layout_width="300dp"
         android:layout_height="60dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
+        app:cardBackgroundColor="#CCFFFFFF"
         app:cardCornerRadius="40dp"
         app:layout_constraintEnd_toEndOf="@+id/cardView"
         app:layout_constraintStart_toStartOf="@+id/cardView"
-        app:layout_constraintTop_toTopOf="parent" >
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             tools:ignore="UseCompoundDrawables">
+
             <TextView
-                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/player"
                 android:textSize="32sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:textStyle="bold" />
+
             <ImageView
                 android:id="@+id/playerImage"
-                android:layout_marginStart="20dp"
-                android:src="@drawable/x_shadowless"
                 android:layout_width="60dp"
                 android:layout_height="40dp"
+                android:layout_marginStart="20dp"
+                android:src="@drawable/x_shadowless"
                 tools:ignore="ContentDescription" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -55,27 +56,27 @@
         android:id="@+id/cardView"
         android:layout_width="300dp"
         android:layout_height="300dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         app:cardCornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView2">
 
 
-
         <RelativeLayout
-            android:visibility="visible"
             android:id="@+id/gamescreen"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:visibility="visible">
+
             <LinearLayout
-                android:visibility="visible"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:baselineAligned="false"
                 android:divider="?android:dividerHorizontal"
                 android:orientation="horizontal"
                 android:showDividers="middle"
-                android:baselineAligned="false">
+                android:visibility="visible">
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -200,19 +201,22 @@
 
 
             </LinearLayout>
+
             <ImageView
                 android:id="@+id/redline"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:ignore="ContentDescription" />
         </RelativeLayout>
+
         <androidx.appcompat.widget.LinearLayoutCompat
-            android:visibility="gone"
             android:id="@+id/scoreScreen"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:visibility="gone">
+
             <TextView
                 android:id="@+id/winnerText"
                 android:layout_width="wrap_content"
@@ -225,30 +229,32 @@
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/reset_button" />
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/replay_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:background="@drawable/rounded_shape"
-                app:backgroundTint="#00BD12"
-                android:padding="10dp"
                 android:layout_marginTop="16dp"
+                android:background="@drawable/rounded_shape"
+                android:padding="10dp"
                 android:text="@string/replay"
+                android:textSize="20sp"
+                app:backgroundTint="#00BD12"
                 app:icon="@drawable/replayicon"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/toMainMenu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:background="@drawable/rounded_shape"
-                app:backgroundTint="#7336E3"
-                android:padding="10dp"
                 android:layout_marginTop="16dp"
+                android:background="@drawable/rounded_shape"
+                android:padding="10dp"
                 android:text="@string/home"
+                android:textSize="16sp"
+                app:backgroundTint="#7336E3"
                 app:icon="@drawable/homeicon"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -265,9 +271,9 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/cardView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="wrap_content"

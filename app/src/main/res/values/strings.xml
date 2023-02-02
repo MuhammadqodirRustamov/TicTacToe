@@ -7,4 +7,6 @@
     <string name="replay">replay</string>
     <string name="main_menu">main menu</string>
     <string name="home">home</string>
+    <string name="player_x">Player X</string>
+    <string name="player_o">Player O</string>
 </resources>
