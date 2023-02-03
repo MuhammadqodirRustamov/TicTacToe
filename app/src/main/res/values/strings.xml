@@ -9,4 +9,6 @@
     <string name="home">home</string>
     <string name="player_x">Player X</string>
     <string name="player_o">Player O</string>
+    <string name="start">Start</string>
+    <string name="player_s_name">Player\'s name</string>
 </resources>

@@ -32,6 +32,9 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
         replay_button.setOnClickListener { reset() }
 
+        PlayerX.text = intent.getStringExtra("name1")
+        PlayerO.text = intent.getStringExtra("name2")
+
         im0.setOnClickListener(this)
         im1.setOnClickListener(this)
         im2.setOnClickListener(this)
