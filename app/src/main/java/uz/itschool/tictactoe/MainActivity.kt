@@ -13,12 +13,14 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), OnClickListener {
 
-    private var x = R.drawable.x
-    private var o = R.drawable.o
+    private var x = R.drawable.x2
+    private var o = R.drawable.o2
 
     private var currentPlayer = 1
     private var xScore = 0
     private var oScore = 0
+
+    private var xo_animation = R.anim.xo_animation1
 
 
     private lateinit var animation : Animation
@@ -95,7 +97,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         if (currentPlayer == 0) image = o
         view.setImageResource(image)
 
-        animation = AnimationUtils.loadAnimation(applicationContext, R.anim.xo_animation)
+        animation = AnimationUtils.loadAnimation(applicationContext, xo_animation)
         view.startAnimation(animation)
 
         val check = checkWinner()
