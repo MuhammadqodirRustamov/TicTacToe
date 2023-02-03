@@ -12,19 +12,20 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity(), OnClickListener {
-
-    private var x = R.drawable.x2
-    private var o = R.drawable.o2
+    private var gameMode = true
+    private var x = if (gameMode) R.drawable.x else R.drawable.x2
+    private var o = if (gameMode) R.drawable.o else R.drawable.o2
 
     private var currentPlayer = 1
     private var xScore = 0
     private var oScore = 0
 
-    private var xo_animation = R.anim.xo_animation1
+    private var gameAnim = R.anim.xo_animation1
 
 
     private lateinit var animation : Animation
     private var matrix = Array(3){Array(3){-1} }
+
 
 
     @SuppressLint("MissingInflatedId")
@@ -32,10 +33,20 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        if (intent.getStringExtra("mode") == "mode2") {
+            gameMode = false
+            x = R.drawable.x2
+            o = R.drawable.o2
+            gameAnim = R.anim.xo_apper_anim
+
+        }
+
         replay_button.setOnClickListener { reset() }
 
-        PlayerX.text = intent.getStringExtra("name1")
-        PlayerO.text = intent.getStringExtra("name2")
+        val name1 = intent.getStringExtra("name1")
+        PlayerX.text = if (name1!!.isNotEmpty()) name1 else "Player X"
+        val name2 = intent.getStringExtra("name2")
+        PlayerO.text = if (name2!!.isNotEmpty()) name2 else "Player O"
 
         im0.setOnClickListener(this)
         im1.setOnClickListener(this)
@@ -97,7 +108,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         if (currentPlayer == 0) image = o
         view.setImageResource(image)
 
-        animation = AnimationUtils.loadAnimation(applicationContext, xo_animation)
+        animation = AnimationUtils.loadAnimation(applicationContext, gameAnim)
         view.startAnimation(animation)
 
         val check = checkWinner()
@@ -244,6 +255,20 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                 image = R.drawable.vertikal3
                 anim = R.anim.redlineanimver
             }
+        }
+        if (!gameMode) {
+            when (a) {
+                1 -> image = R.drawable.dioganal1_mode
+                2 -> image = R.drawable.dioganal2_mode
+                3 -> image = R.drawable.gorizontal1_mode
+                4 -> image = R.drawable.gorizontal2_mode
+                5 -> image = R.drawable.gorizontal3_mode
+                6 -> image = R.drawable.vertikal1_mode
+                7 -> image = R.drawable.vertikal2_mode
+                8 -> image = R.drawable.vertikal3_mode
+
+            }
+            anim = gameAnim
         }
         animation = AnimationUtils.loadAnimation(applicationContext, anim)
         redline.setImageResource(image)
