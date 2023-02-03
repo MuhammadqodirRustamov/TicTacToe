@@ -8,6 +8,7 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -27,13 +28,16 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     private var matrix = Array(3){Array(3){-1} }
 
 
+    private lateinit var Parent : ConstraintLayout
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        Parent = findViewById(R.id.parent)
 
         if (intent.getStringExtra("mode") == "mode2") {
+            Parent.setBackgroundResource(R.drawable.woodbg)
             gameMode = false
             x = R.drawable.x2
             o = R.drawable.o2
@@ -118,7 +122,12 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
     private fun setPlayer(){
         var player = R.drawable.x_shadowless
-        if (currentPlayer == 0) player = R.drawable.o_shadowless
+        if (gameMode){
+            if (currentPlayer == 0) player = R.drawable.o_shadowless
+        }else{
+            player = if (currentPlayer == 1) R.drawable.x2 else R.drawable.o2
+        }
+
         playerImage.setImageResource(player)
 
 

@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_gradient"
@@ -18,35 +19,36 @@
         tools:ignore="ContentDescription" />
 
 
-
     <androidx.cardview.widget.CardView
-        app:cardBackgroundColor="#CCFFFFFF"
         android:id="@+id/cardView2"
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:layout_marginTop="16dp"
+        app:cardBackgroundColor="#CCFFFFFF"
         app:cardCornerRadius="40dp"
         app:layout_constraintEnd_toEndOf="@+id/cardView"
         app:layout_constraintStart_toStartOf="@+id/cardView"
-        app:layout_constraintTop_toTopOf="parent" >
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             tools:ignore="UseCompoundDrawables">
+
             <TextView
-                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/player"
                 android:textSize="32sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:textStyle="bold" />
+
             <ImageView
                 android:id="@+id/playerImage"
-                android:layout_marginStart="20dp"
-                android:src="@drawable/x_shadowless"
                 android:layout_width="60dp"
                 android:layout_height="40dp"
+                android:layout_marginStart="20dp"
+                android:src="@drawable/x_shadowless"
                 tools:ignore="ContentDescription" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
