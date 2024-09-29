@@ -9,7 +9,26 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.PlayerO
+import kotlinx.android.synthetic.main.activity_main.PlayerX
+import kotlinx.android.synthetic.main.activity_main.gamescreen
+import kotlinx.android.synthetic.main.activity_main.im0
+import kotlinx.android.synthetic.main.activity_main.im1
+import kotlinx.android.synthetic.main.activity_main.im2
+import kotlinx.android.synthetic.main.activity_main.im3
+import kotlinx.android.synthetic.main.activity_main.im4
+import kotlinx.android.synthetic.main.activity_main.im5
+import kotlinx.android.synthetic.main.activity_main.im6
+import kotlinx.android.synthetic.main.activity_main.im7
+import kotlinx.android.synthetic.main.activity_main.im8
+import kotlinx.android.synthetic.main.activity_main.playerImage
+import kotlinx.android.synthetic.main.activity_main.redline
+import kotlinx.android.synthetic.main.activity_main.replay_button
+import kotlinx.android.synthetic.main.activity_main.scoreO
+import kotlinx.android.synthetic.main.activity_main.scoreScreen
+import kotlinx.android.synthetic.main.activity_main.scoreX
+import kotlinx.android.synthetic.main.activity_main.toMainMenu
+import kotlinx.android.synthetic.main.activity_main.winnerText
 
 
 class MainActivity : AppCompatActivity(), OnClickListener {
@@ -23,21 +42,19 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
     private var gameAnim = R.anim.xo_animation1
 
+    private lateinit var animation: Animation
+    private var matrix = Array(3) { Array(3) { -1 } }
 
-    private lateinit var animation : Animation
-    private var matrix = Array(3){Array(3){-1} }
-
-
-    private lateinit var Parent : ConstraintLayout
+    private lateinit var parent: ConstraintLayout
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        Parent = findViewById(R.id.parent)
+        parent = findViewById(R.id.parent)
 
         if (intent.getStringExtra("mode") == "mode2") {
-            Parent.setBackgroundResource(R.drawable.woodbg)
+            parent.setBackgroundResource(R.drawable.woodbg)
             gameMode = false
             x = R.drawable.x2
             o = R.drawable.o2
@@ -46,6 +63,8 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         }
 
         replay_button.setOnClickListener { reset() }
+        toMainMenu.setOnClickListener{ onBackPressed() }
+
 
         val name1 = intent.getStringExtra("name1")
         PlayerX.text = if (name1!!.isNotEmpty()) name1 else "Player X"
@@ -63,14 +82,15 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         im8.setOnClickListener(this)
     }
 
-    private fun reset(){
+    private fun reset() {
         animation = AnimationUtils.loadAnimation(applicationContext, R.anim.disapperanim)
         scoreScreen.startAnimation(animation)
         gamescreen.visibility = View.VISIBLE
         scoreScreen.visibility = View.GONE
         winnerText.text = ""
-        for (i in matrix){
+        for (i in matrix) {
             i[0] = -1
+
             i[1] = -1
             i[2] = -1
         }
@@ -101,8 +121,8 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         val view = v as ImageView
         if (!view.isEnabled) return
 
-        val xCor = view.tag.toString().toInt()%3
-        val yCor = view.tag.toString().toInt()/3
+        val xCor = view.tag.toString().toInt() % 3
+        val yCor = view.tag.toString().toInt() / 3
         matrix[yCor][xCor] = currentPlayer
 
         view.isEnabled = false
@@ -117,14 +137,14 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
         val check = checkWinner()
         currentPlayer = if (currentPlayer == 1) 0 else 1
-        if (!check)setPlayer()
+        if (!check) setPlayer()
     }
 
-    private fun setPlayer(){
+    private fun setPlayer() {
         var player = R.drawable.x_shadowless
-        if (gameMode){
+        if (gameMode) {
             if (currentPlayer == 0) player = R.drawable.o_shadowless
-        }else{
+        } else {
             player = if (currentPlayer == 1) R.drawable.x2 else R.drawable.o2
         }
 
@@ -137,35 +157,35 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
     private fun checkWinner(): Boolean {
         val c = currentPlayer
-        for (j in matrix.indices){
+        for (j in matrix.indices) {
             val i = matrix[j]
-            if (i[0] == c && i[1] == c && i[2] == c){
-                drawLine(3+j)
+            if (i[0] == c && i[1] == c && i[2] == c) {
+                drawLine(3 + j)
                 playerHasWon(c)
                 return true
             }
         }
-        for (i in 0..2){
-            if (matrix[0][i] == c && matrix[1][i] == c && matrix[2][i] == c){
-                drawLine(i+1+5)
+        for (i in 0..2) {
+            if (matrix[0][i] == c && matrix[1][i] == c && matrix[2][i] == c) {
+                drawLine(i + 1 + 5)
                 playerHasWon(c)
                 return true
             }
         }
-        if (matrix[0][0] == c && matrix[1][1] == c && matrix[2][2] == c ){
+        if (matrix[0][0] == c && matrix[1][1] == c && matrix[2][2] == c) {
             drawLine(1)
             playerHasWon(c)
             return true
         }
-        if (matrix[0][2] == c && matrix[1][1] == c && matrix[2][0] == c ){
+        if (matrix[0][2] == c && matrix[1][1] == c && matrix[2][0] == c) {
             drawLine(2)
             playerHasWon(c)
             return true
         }
         var count = 0
-        for (i in matrix){
-            for (j in i){
-                if (j == -1){
+        for (i in matrix) {
+            for (j in i) {
+                if (j == -1) {
                     count++
                 }
             }
@@ -178,19 +198,19 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     }
 
     @SuppressLint("SetTextI18n")
-    private fun playerHasWon(player:Int){
-        if (player == -1){
+    private fun playerHasWon(player: Int) {
+        if (player == -1) {
             winnerText.text = "DRAW"
             showScoreScreen()
             return
         }
 
         animation = AnimationUtils.loadAnimation(applicationContext, R.anim.bounce)
-        if (player == 0){
+        if (player == 0) {
             oScore++
             scoreO.text = oScore.toString()
             scoreO.startAnimation(animation)
-        }else{
+        } else {
             xScore++
             scoreX.text = xScore.toString()
             scoreX.startAnimation(animation)
@@ -201,7 +221,8 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         disableImages()
 
     }
-    private fun enableImages(){
+
+    private fun enableImages() {
         im0.isEnabled = true
         im1.isEnabled = true
         im2.isEnabled = true
@@ -212,7 +233,8 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         im7.isEnabled = true
         im8.isEnabled = true
     }
-    private fun disableImages(){
+
+    private fun disableImages() {
         im0.isEnabled = false
         im1.isEnabled = false
         im2.isEnabled = false
@@ -223,43 +245,48 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         im7.isEnabled = false
         im8.isEnabled = false
     }
-    private fun showScoreScreen(){
+
+    private fun showScoreScreen() {
         gamescreen.visibility = View.GONE
         scoreScreen.visibility = View.VISIBLE
         animation = AnimationUtils.loadAnimation(applicationContext, R.anim.apperwithbounceanim)
         scoreScreen.startAnimation(animation)
-
-
     }
 
-    private fun drawLine(a:Int){
+    private fun drawLine(a: Int) {
         var image = R.drawable.dioganal1
         var anim = R.anim.redlineanimdiog1
-        when (a){
+        when (a) {
             2 -> {
                 image = R.drawable.dioganal2
                 anim = R.anim.redlineanimdiog2
             }
+
             3 -> {
                 image = R.drawable.gorizontal1
                 anim = R.anim.redlineanimgoriz
             }
+
             4 -> {
                 image = R.drawable.gorizontal2
                 anim = R.anim.redlineanimgoriz
             }
+
             5 -> {
                 image = R.drawable.gorizontal3
                 anim = R.anim.redlineanimgoriz
             }
+
             6 -> {
                 image = R.drawable.vertikal1
                 anim = R.anim.redlineanimver
             }
+
             7 -> {
                 image = R.drawable.vertikal2
                 anim = R.anim.redlineanimver
             }
+
             8 -> {
                 image = R.drawable.vertikal3
                 anim = R.anim.redlineanimver
@@ -282,7 +309,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         animation = AnimationUtils.loadAnimation(applicationContext, anim)
         redline.setImageResource(image)
         redline.startAnimation(animation)
-        animation.setAnimationListener(object : Animation.AnimationListener{
+        animation.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationStart(animation: Animation?) {}
 
             override fun onAnimationEnd(animation: Animation?) {
