@@ -216,7 +216,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             scoreX.startAnimation(animation)
         }
         var t = "Winner is "
-        t += if (player == 1) "X" else "O"
+        t += if (player == 1) intent.getStringExtra("name1") else intent.getStringExtra("name2")
         winnerText.text = t
         disableImages()
 
