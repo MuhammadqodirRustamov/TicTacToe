@@ -26,7 +26,7 @@ A fun and simple Android Tic-Tac-Toe game that allows two players to compete. Th
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/Muhammadqodir2006/tictactoe-app.git
+   git clone https://github.com/MuhammadqodirRustamov/tictactoe-app.git
    ```
 
 2. Open the project in Android Studio.
